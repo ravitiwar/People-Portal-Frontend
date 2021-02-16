@@ -4,7 +4,7 @@
       <div class="card card-primary">
         <div class="card-header bg-primary text-white">Login</div>
         <div class="card-body">
-          <form>
+          <form autocomplete="off" (ngSubmit)="login(loginForm)" #loginForm="ngForm">
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -12,19 +12,23 @@
                 class="form-control"
                 id="email"
                 name="email"
+                required
+                ngModel
               />
             </div>
             <div class="form-group mb-2">
-              <label for="password">Email</label>
+              <label for="password">Password</label>
               <input
                 type="password"
                 class="form-control"
                 id="password"
                 name="password"
+                ngModel
+                required
               />
             </div>
             <div class="form-group mt-4">
-              <button class="btn btn-primary pull-right">Login</button>
+              <button class="btn btn-primary pull-right" [disabled]="loginForm.invalid">Login</button>
             </div>
           </form>
         </div>
