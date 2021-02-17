@@ -3,12 +3,14 @@
         <div class="col-md-12">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active display-6 text-dark font-weight-bold" aria-current="page" href="#">Employees</a>
+                    <a (click)="switchResource()"  class="nav-link {{isEmployeeVisible?'active':''}} display-6 text-dark font-weight-bold" aria-current="page" href="#">Employees</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link display-6 text-dark" href="#">Rooms</a>
+                    <a (click)="switchResource()" class="nav-link display-6 text-dark {{!isEmployeeVisible?'active':''}}" href="#">Rooms</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+<app-employee *ngIf="isEmployeeVisible"></app-employee>
+<app-room *ngIf="!isEmployeeVisible"></app-room>

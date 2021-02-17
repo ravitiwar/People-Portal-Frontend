@@ -8,6 +8,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ContainerComponent } from './container/container.component';
+import { EmployeeComponent } from './container/employee/employee.component';
+import { RoomComponent } from './container/room/room.component';
+import { ListComponent } from './container/employee/list/list.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { ContainerComponent } from './container/container.component';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    ContainerComponent
+    ContainerComponent,
+    EmployeeComponent,
+    RoomComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

@@ -4,39 +4,47 @@ import {Subscription} from 'rxjs';
 import {User} from './user.model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class AuthService {
-    public user: User | undefined;
-    public userLogin: EventEmitter<any> = new EventEmitter();
+  public user: User | undefined;
+  public userLogin: EventEmitter<any> = new EventEmitter();
 
-    constructor(private http: HttpClient) {
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    private getUrl(endpoint: string): string {
-        return 'http://blue-stack.local' + endpoint;
-    }
+  private getUrl(endpoint: string): string {
+    return 'http://10.10.2.62:8000' + endpoint;
+  }
 
-    public login(email: string, password: string): void {
-        this.http.post<User>(this.getUrl('/api/login'), {email, password}).subscribe((res: any) => {
-            if (res.success) {
-                this.user = new User(res);
-                this.userLogin.emit(this.user);
-                localStorage.setItem('access_token', this.user.getAccessToken() as string);
-                localStorage.setItem('refresh_token', this.user.getRefreshToken() as string);
-            } else {
-                alert('Invalid Credentials!');
-            }
-        });
-    }
+  public login(email: string, password: string): void {
+    this.http.post<User>(this.getUrl('/api/login'), {email, password}).subscribe((res: any) => {
+      if (res.success) {
+        this.user = new User(res);
+        this.userLogin.emit(this.user);
+        localStorage.setItem('access_token', this.user.getAccessToken() as string);
+        localStorage.setItem('refresh_token', this.user.getRefreshToken() as string);
+      } else {
+        alert('Invalid Credentials!');
+      }
+    });
+  }
 
-    public isUserLoggedIn(): boolean {
-        return this.user?.isUserLoggedIn() as boolean;
-    }
+  public isUserLoggedIn(): boolean {
+    return this.user?.isUserLoggedIn() as boolean;
+  }
 
-    setUserDetails(): void {
+  setUserDetails(): void {
 
-    }
+  }
+
+  public getAccessToken(): string {
+    return localStorage.getItem('access_token') as string;
+  }
+
+  public getRefreshToken(): string {
+    return localStorage.getItem('refresh_token') as string;
+  }
 
 }
 
