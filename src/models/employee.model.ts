@@ -5,9 +5,10 @@ export class Employee {
   public email: string | undefined;
   public position: string | undefined;
   public team: string | undefined;
-  public rolId: number;
+  public roleId: number;
+  public phone: string | undefined;
 
-  constructor(public  employee: {
+  constructor(employee: {
     id: number,
     name: string,
     emp_id: string,
@@ -23,6 +24,7 @@ export class Employee {
     this.email = employee.email;
     this.position = employee.position;
     this.team = employee.team;
-    this.rolId = employee.role_id;
+    this.roleId = employee.role_id;
+    this.phone = employee.phone;
   }
 }

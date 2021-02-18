@@ -12,9 +12,14 @@ import {HttpHeaders} from '@angular/common/http';
 export class EmployeeService {
   public employees: Employee[] = [];
   public setEmployees: EventEmitter<any> = new EventEmitter();
+  public editEvent: EventEmitter<Employee> = new EventEmitter();
 
 
   constructor(private http: HttpClient, private dataService: DataService, private authService: AuthService) {
+    this.fetchData();
+  }
+
+  public fetchData(): void {
     this.http.get(this.getUrl('/api/employee'), {headers: this.getHeaders()}).subscribe((res: any) => {
       if (this.dataService.isResponseSuccess(res)) {
         this.setData(this.dataService.getResponseData(res));
@@ -33,19 +38,21 @@ export class EmployeeService {
   }
 
   private setData(data: { current_page: number, data: [] }): void {
+    this.employees = [];
     data.data.forEach((employee, index) => {
       this.employees.push(new Employee(employee));
     });
     this.setEmployees.emit(this.employees);
   }
 
-
   addEmployee(employee: Employee): void {
 
   }
 
   editEmployee(employee: Employee): void {
-
+    this.http.put(this.getUrl('/api/employee/' + employee.id), employee, {headers: this.getHeaders()}).subscribe((res) => {
+      this.editEvent.emit(employee);
+    });
   }
 
   deleteEmployee(employee: Employee): void {

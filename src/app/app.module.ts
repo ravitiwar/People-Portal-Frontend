@@ -11,6 +11,7 @@ import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './container/employee/employee.component';
 import { RoomComponent } from './container/room/room.component';
 import { ListComponent } from './container/employee/list/list.component';
+import { EditComponent } from './container/employee/edit/edit.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ListComponent } from './container/employee/list/list.component';
     ContainerComponent,
     EmployeeComponent,
     RoomComponent,
-    ListComponent
+    ListComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

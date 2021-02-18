@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   public isUserLoggedIn(): boolean {
-    return this.user?.isUserLoggedIn() as boolean;
+    return (this.getAccessToken() !== null);
   }
 
   setUserDetails(): void {
