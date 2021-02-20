@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, AfterViewInit, OnChanges} from '@angular/core';
-import {EmployeeService} from '../../../services/employee.service';
-import {Employee} from '../../../models/employee.model';
+import {EmployeeService} from '../../services/employee.service';
+import {Employee} from '../../models/employee.model';
 import {Subscription} from 'rxjs';
 
 @Component({

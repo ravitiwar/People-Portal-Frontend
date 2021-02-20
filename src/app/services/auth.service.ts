@@ -21,10 +21,9 @@ export class AuthService {
     public login(email: string, password: string): void {
         this.http.post<User>(this.getUrl('/api/login'), {email, password}).subscribe((res: any) => {
             if (res.success) {
-                this.user = new User(res);
-                this.userLogin.emit(this.user);
-                localStorage.setItem('access_token', this.user.getAccessToken() as string);
-                localStorage.setItem('refresh_token', this.user.getRefreshToken() as string);
+                localStorage.setItem('access_token', res.data.access_token as string);
+                localStorage.setItem('refresh_token', res.data.refresh_token as string);
+                this.getUserDetails();
             } else {
                 alert('Invalid Credentials!');
             }
@@ -35,8 +34,13 @@ export class AuthService {
         return (this.getAccessToken() !== null);
     }
 
-    setUserDetails(): void {
-
+    getUserDetails(): void {
+        this.http.get<User>(this.dataService.getUrl('/api/user'), {headers: this.getAuthHeaders()}).subscribe((res: any) => {
+            if (res.success) {
+                this.user = new User(res.data);
+                this.userLogin.emit(this.user);
+            }
+        });
     }
 
     public getAccessToken(): string {

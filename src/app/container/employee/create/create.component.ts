@@ -1,9 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Employee} from '../../../../models/employee.model';
+import {Employee} from '../../../models/employee.model';
 import {Subscription} from 'rxjs';
-import {EmployeeService} from '../../../../services/employee.service';
-import {RoleService} from '../../../../services/role.service';
-import {Role} from '../../../../models/role.model';
+import {EmployeeService} from '../../../services/employee.service';
+import {RoleService} from '../../../services/role.service';
+import {Role} from '../../../models/role.model';
 
 @Component({
     selector: 'app-employee-create',

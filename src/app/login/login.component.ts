@@ -1,30 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from '../services/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  get errorMessage(): string {
-    return this.errorMessage;
-  }
+export class LoginComponent implements OnInit, OnDestroy {
+    public isLoading = false;
+    public loginEvent: Subscription;
 
-  set errorMessage(value: string) {
-    this.errorMessage = value;
-  }
+    constructor(private authService: AuthService) {
+        this.loginEvent = this.authService.userLogin.subscribe((res) => {
+            this.isLoading = false;
+        });
+    }
 
+    ngOnInit(): void {
+    }
 
-  constructor(private authService: AuthService) {
-  }
+    public login(loginForm: NgForm): any {
+        this.isLoading = true;
+        this.authService.login(loginForm.value.email, loginForm.value.password);
+    }
 
-  ngOnInit(): void {
-  }
-
-  public login(loginForm: NgForm): any {
-    this.authService.login(loginForm.value.email, loginForm.value.password);
-  }
+    ngOnDestroy(): void {
+        this.loginEvent.unsubscribe();
+    }
 
 }

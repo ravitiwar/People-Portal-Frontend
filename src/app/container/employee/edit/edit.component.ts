@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {Employee} from '../../../../models/employee.model';
-import {EmployeeService} from '../../../../services/employee.service';
+import {Employee} from '../../../models/employee.model';
+import {EmployeeService} from '../../../services/employee.service';
 import {Form} from '@angular/forms';
 import {Subscription} from "rxjs";
 
