@@ -10,8 +10,8 @@ export class DataService {
   constructor(private http: HttpClient) {
   }
 
-  private getUrl(endpoint: string): string {
-    return 'http://10.10.2.62:8000' + endpoint;
+  public getUrl(endpoint: string): string {
+    return 'http://192.168.0.102:8000' + endpoint;
   }
 
   public getResponseData(response: { success: boolean, data: any, message: string }): any {

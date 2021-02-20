@@ -10,8 +10,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './container/employee/employee.component';
 import { RoomComponent } from './container/room/room.component';
-import { ListComponent } from './container/employee/list/list.component';
 import { EditComponent } from './container/employee/edit/edit.component';
+import { CreateComponent } from './container/employee/create/create.component';
 
 
 @NgModule({
@@ -22,8 +22,8 @@ import { EditComponent } from './container/employee/edit/edit.component';
     ContainerComponent,
     EmployeeComponent,
     RoomComponent,
-    ListComponent,
-    EditComponent
+    EditComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

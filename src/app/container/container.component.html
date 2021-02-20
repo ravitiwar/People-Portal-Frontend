@@ -3,10 +3,16 @@
         <div class="col-md-12">
             <ul class="nav">
                 <li class="nav-item">
-                    <a (click)="switchResource()"  class="nav-link {{isEmployeeVisible?'active':''}} display-6 text-dark font-weight-bold" aria-current="page" href="#">Employees</a>
+                    <a (click)="switchResource(true)"
+                       class="nav-link {{isEmployeeVisible?'font-weight-bold':''}} display-6 text-dark "
+                       aria-current="page" href="#">Employees</a>
                 </li>
                 <li class="nav-item">
-                    <a (click)="switchResource()" class="nav-link display-6 text-dark {{!isEmployeeVisible?'active':''}}" href="#">Rooms</a>
+                    <a (click)="switchResource(false)"
+                       class="nav-link display-6 text-dark {{isEmployeeVisible?'':'font-weight-bold'}}"
+                       href="#">
+                        Rooms
+                    </a>
                 </li>
             </ul>
         </div>
