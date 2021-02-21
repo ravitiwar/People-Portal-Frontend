@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -13,6 +12,7 @@ import { EmployeeComponent } from './container/employee/employee.component';
 import { RoomComponent } from './container/room/room.component';
 import { EditComponent } from './container/employee/edit/edit.component';
 import { CreateComponent } from './container/employee/create/create.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { CreateComponent } from './container/employee/create/create.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
