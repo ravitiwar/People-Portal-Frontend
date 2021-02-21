@@ -11,27 +11,64 @@ export class RoleService {
     public allCapabilities: [] = [];
     public capabilityEvent: EventEmitter<any> = new EventEmitter<any>();
     public roleEvent: EventEmitter<any> = new EventEmitter();
+    public roleUpdateEvent: EventEmitter<any> = new EventEmitter();
+    public roleAddEvent: EventEmitter<any> = new EventEmitter();
+
     public roles: Role[] = [];
 
     constructor(protected http: HttpClient, protected authService: AuthService, private dataService: DataService) {
     }
 
     public getRoles(): void {
-        if (!this.allCapabilities.length) {
-            this.http.get(this.dataService.getUrl('/api/role'), {headers: this.authService.getAuthHeaders()}).subscribe((res: any) => {
-                this.setData(this.dataService.getResponseData(res));
-                this.roleEvent.emit(this.roles);
-            });
-        }
+        this.http.get(this.dataService.getUrl('/api/role'), {headers: this.authService.getAuthHeaders()}).subscribe((res: any) => {
+            this.setData(this.dataService.getResponseData(res));
+            this.roleEvent.emit(this.roles);
+        });
     }
 
     public getCapabilities(): void {
         this.http.get(this.dataService.getUrl('/api/capabilities'), {headers: this.authService.getAuthHeaders()}).subscribe((res: any) => {
             const data: [] = this.dataService.getResponseData(res);
+            this.allCapabilities = [];
             data.forEach((k, v) => {
                 this.allCapabilities.push(k);
             });
             this.capabilityEvent.emit(this.allCapabilities);
+        });
+    }
+
+    public updateRole(role: Role): void {
+        // tslint:disable-next-line:max-line-length
+        this.http.put(this.dataService.getUrl('/api/role/' + role.id), role, {headers: this.authService.getAuthHeaders()}).subscribe((res: any) => {
+            if (this.dataService.isResponseSuccess(res)) {
+                this.roleUpdateEvent.emit(role);
+                this.getRoles();
+            } else {
+                alert('Error while updating the role, Please try again');
+            }
+        });
+    }
+
+    public addRole(role: Role): void {
+        // tslint:disable-next-line:max-line-length
+        this.http.post(this.dataService.getUrl('/api/role'), role, {headers: this.authService.getAuthHeaders()}).subscribe((res: any) => {
+            if (this.dataService.isResponseSuccess(res)) {
+                this.roleAddEvent.emit(role);
+                this.getRoles();
+            } else {
+                alert('Error while adding the role, Please try again');
+            }
+        });
+    }
+
+    public deleteRole(role: Role): void {
+        // tslint:disable-next-line:max-line-length
+        this.http.delete(this.dataService.getUrl('/api/role/' + role.id), {headers: this.authService.getAuthHeaders()}).subscribe((res: any) => {
+            if (this.dataService.isResponseSuccess(res)) {
+                this.getRoles();
+            } else {
+                alert('Error! while deletig the Role, Please try again.');
+            }
         });
     }
 
@@ -53,6 +90,7 @@ export class RoleService {
         to: number,
         total: number
     }): void {
+        this.roles = [];
         data.data.forEach((role, v) => {
             this.roles.push(new Role(role));
         });

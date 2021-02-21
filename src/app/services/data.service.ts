@@ -11,7 +11,7 @@ export class DataService {
   }
 
   public getUrl(endpoint: string): string {
-    return 'http://192.168.0.102:8000' + endpoint;
+    return 'http://blue-stack.local' + endpoint;
   }
 
   public getResponseData(response: { success: boolean, data: any, message: string }): any {

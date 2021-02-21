@@ -1,22 +1,11 @@
-<div class="container">
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a (click)="switchResource(true)"
-                       class="nav-link {{isEmployeeVisible?'font-weight-bold':''}} display-6 text-dark "
-                       aria-current="page" href="#">Employees</a>
-                </li>
-                <li class="nav-item">
-                    <a (click)="switchResource(false)"
-                       class="nav-link display-6 text-dark {{isEmployeeVisible?'':'font-weight-bold'}}"
-                       href="#">
-                        Rooms
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<app-employee *ngIf="isEmployeeVisible"></app-employee>
-<app-room *ngIf="!isEmployeeVisible"></app-room>
+<mat-tab-group class="mt-2">
+    <mat-tab label="Employees" class="mb-2">
+        <app-employee></app-employee>
+    </mat-tab>
+    <mat-tab label="Rooms" class="mb-2">
+        <app-room></app-room>
+    </mat-tab>
+</mat-tab-group>
+
+
+

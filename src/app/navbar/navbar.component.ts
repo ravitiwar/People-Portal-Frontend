@@ -1,31 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {User} from '../services/user.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {RoleService} from '../services/role.service';
-import {Role} from '../models/role.model';
-import {Subscription} from 'rxjs';
+import {RoleComponent} from './role/role.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
     public isUserLoggedIn: boolean | undefined;
     public user: User | undefined;
-    public roles: Role[] = [];
-    protected roleEvent: Subscription;
 
-
-    constructor(private authService: AuthService, private modalService: NgbModal, protected roleService: RoleService) {
+    constructor(private authService: AuthService, protected roleService: RoleService, public dialog: MatDialog) {
         this.authService.userLogin.subscribe((user) => {
             this.user = user;
             this.isUserLoggedIn = true;
         });
-        this.roleEvent = this.roleService.roleEvent.subscribe((roles: Role[]) => {
-            this.roles = roles;
-        });
+
 
     }
 
@@ -33,13 +28,16 @@ export class NavbarComponent implements OnInit {
         this.roleService.getRoles();
     }
 
-    launchRoleModel(content: any): void {
-        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    launchRoleModel(): void {
+        const dialogRef = this.dialog.open(RoleComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
     }
 
-    OnDestroy(): void {
+    ngOnDestroy(): void {
         this.authService.userLogin.unsubscribe();
-        this.roleEvent.unsubscribe();
     }
 
 }

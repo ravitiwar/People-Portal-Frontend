@@ -18,3 +18,8 @@
     border-radius: 2%;
     width: 50%;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-tab-body-wrapper {
+    padding-top: 2% !important;
+}

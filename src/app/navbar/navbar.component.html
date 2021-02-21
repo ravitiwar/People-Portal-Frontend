@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-2">
                 <a class="text-black-50 font-weight-bold" style="float: right" title="role"
-                   (click)="launchRoleModel(role_popup)">
+                   (click)="launchRoleModel()">
                     <i class="fa fa-gear"></i> Roles
                 </a>
             </div>
@@ -32,36 +32,3 @@
         </div>
     </div>
 </nav>
-
-<ng-template #role_popup let-modal>
-    <div class="modal-header modal-xl">
-        <h4 class="modal-title" id="modal-basic-title">Roles</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <td>Role Name</td>
-                <td>Associated Permission</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let role of roles">
-                <td>
-                    {{role.title}}
-                </td>
-                <td class="text-sm-center">
-
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-</ng-template>
