@@ -17,13 +17,13 @@ export class CreateComponent implements OnInit, OnDestroy {
     public employee: Employee = new Employee(
         {
             id: 0,
-            name: 'Ravi',
-            emp_id: 'Temp22',
-            email: 'test@gmail.com',
-            position: 'PHP Developer',
-            team: 'PHP',
-            role_id: 1,
-            phone: '7744846132',
+            name: '',
+            emp_id: '',
+            email: '',
+            position: '',
+            team: '',
+            role_id: 0,
+            phone: '',
         }
     );
 

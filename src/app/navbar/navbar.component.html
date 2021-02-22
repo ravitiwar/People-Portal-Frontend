@@ -1,34 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-light text-primary bg-white" style="border-bottom: 2px solid #007bff ">
-    <a class="navbar-brand" href="/"><strong>People</strong>Portal</a>
+  <a class="navbar-brand" href="/"><strong>People</strong>Portal</a>
 
-    <div class=" navbar-collapse" id="navbarSupportedContent">
-        <div class="row w-100 align-items-center">
-            <div class="col-md-7">
-            </div>
-            <div class="col-md-2">
-                <a class="text-black-50 font-weight-bold" style="float: right" title="role"
-                   (click)="launchRoleModel()">
-                    <i class="fa fa-gear"></i> Roles
-                </a>
-            </div>
-            <div class="col-md-3">
-                <div class="pd-2 d-inline mr-2 d-flex align-items-center" *ngIf="isUserLoggedIn">
-                    <div class="p-2">
-                        <img class="img" height="30"
-                             src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"/>
-                    </div>
-                    <div class="p-2">
+  <div class=" navbar-collapse" id="navbarSupportedContent">
+    <div class="row w-100 align-items-center">
+      <div class="col-md-7">
+      </div>
+      <div class="col-md-5" >
+        <a *ngIf="(authService.userCan('employee_create')|| authService.userCan('employee_edit'))" class="text-black-50 font-weight-bold" style="float: right" title="role"
+           (click)="launchRoleModel()">
+          <i class="fa fa-gear"></i> Roles
+        </a>
+        <div class="pd-2 d-inline mr-2 d-flex align-items-center justify-content-end"
+             *ngIf="isUserLoggedIn">
+          <div class="p-2">
+            <img class="img" height="30"
+                 src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"/>
+          </div>
+          <div class="p-2">
                       <span class="">
                         {{(user === undefined) ? '' : user.getName()|titlecase}} <small
-                              class="d-block">{{(user === undefined) ? '' : user.getRole()|titlecase}}</small>
+                        class="d-block">{{(user === undefined) ? '' : user.getRole()|titlecase}}</small>
                       </span>
-                    </div>
-                    <div class="p-2">
-                        <button class="btn btn-outline-secondary">Logout</button>
-                    </div>
-                </div>
-            </div>
-
+          </div>
+          <div class="p-2">
+            <button (click)="logout()" mat-stroked-button color="primary">Logout</button>
+          </div>
         </div>
+      </div>
+
     </div>
+  </div>
 </nav>

@@ -1,51 +1,51 @@
 <div class="container">
-    <div class="d-flex justify-content-end mb-2">
-        <button (click)="addRoom()" mat-stroked-button color="primary"
-                class="mt-2 mr-0">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
-            New Room
-        </button>
-    </div>
-    <mat-card>
-        <table mat-table [dataSource]="rooms" class="w-100">
-            <ng-container matColumnDef="roomId">
-                <th mat-header-cell *matHeaderCellDef> Room ID</th>
-                <td mat-cell *matCellDef="let element"> {{element.roomId}} </td>
-            </ng-container>
+  <div class="d-flex justify-content-end mb-2">
+    <button *ngIf="authService.userCan('conf_room_create')" (click)="addRoom()" mat-stroked-button color="primary"
+            class="mt-2 mr-0">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+      New Room
+    </button>
+  </div>
+  <mat-card>
+    <table mat-table [dataSource]="rooms" class="w-100">
+      <ng-container matColumnDef="roomId">
+        <th mat-header-cell *matHeaderCellDef> Room ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.roomId}} </td>
+      </ng-container>
 
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name</th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
 
-            <ng-container matColumnDef="bookingEmail">
-                <th mat-header-cell *matHeaderCellDef> Booking Email</th>
-                <td mat-cell *matCellDef="let element"> {{element.bookingEmail}} </td>
-            </ng-container>
+      <ng-container matColumnDef="bookingEmail">
+        <th mat-header-cell *matHeaderCellDef> Booking Email</th>
+        <td mat-cell *matCellDef="let element"> {{element.bookingEmail}} </td>
+      </ng-container>
 
 
-            <ng-container matColumnDef="sitting">
-                <th mat-header-cell *matHeaderCellDef> Sitting</th>
-                <td mat-cell *matCellDef="let element"> {{element.sitting}} </td>
-            </ng-container>
+      <ng-container matColumnDef="sitting">
+        <th mat-header-cell *matHeaderCellDef> Sitting</th>
+        <td mat-cell *matCellDef="let element"> {{element.sitting}} </td>
+      </ng-container>
 
-            <ng-container matColumnDef="currentStatus">
-                <th mat-header-cell *matHeaderCellDef> Current Status</th>
-                <td mat-cell *matCellDef="let element"> {{element.currentStatus}} </td>
-            </ng-container>
+      <ng-container matColumnDef="currentStatus">
+        <th mat-header-cell *matHeaderCellDef> Current Status</th>
+        <td mat-cell *matCellDef="let element"> {{element.currentStatus}} </td>
+      </ng-container>
 
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef class="text-center"> Action</th>
-                <td mat-cell *matCellDef="let element">
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-center"> Action</th>
+        <td mat-cell *matCellDef="let element">
                     <span class="d-flex w-100  justify-content-around pd-2">
-                        <i style="cursor: pointer" (click)="editRoom(element)" class="fa fa-pencil text-warning"></i>
-                        <i style="cursor: pointer" (click)="deleteRoom(element)" class="fa fa-trash text-danger"></i>
+                        <i *ngIf="authService.userCan('conf_room_edit')" style="cursor: pointer" (click)="editRoom(element)" class="fa fa-pencil text-warning"></i>
+                        <i *ngIf="authService.userCan('conf_room_delete')" style="cursor: pointer" (click)="deleteRoom(element)" class="fa fa-trash text-danger"></i>
                     </span>
-                </td>
-            </ng-container>
+        </td>
+      </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </mat-card>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
 </div>

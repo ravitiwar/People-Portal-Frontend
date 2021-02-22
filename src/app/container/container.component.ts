@@ -6,17 +6,11 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
-    public isEmployeeVisible = true;
 
     constructor() {
     }
 
     ngOnInit(): void {
-    }
-
-
-    public switchResource(resource: boolean): void {
-        this.isEmployeeVisible = resource;
     }
 
 }

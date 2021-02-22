@@ -1,17 +1,19 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Subscription} from 'rxjs';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, Subscription} from 'rxjs';
+import {User} from './user.model';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
   public getUrl(endpoint: string): string {
-    return 'http://blue-stack.local' + endpoint;
+    return 'http://10.10.2.62:8000' + endpoint;
   }
 
   public getResponseData(response: { success: boolean, data: any, message: string }): any {
@@ -25,5 +27,8 @@ export class DataService {
   public getResponseMessage(response: { success: boolean, data: any, message: string }): string {
     return response.message;
   }
+
+
+
 
 }
