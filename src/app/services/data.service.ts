@@ -13,7 +13,7 @@ export class DataService {
   }
 
   public getUrl(endpoint: string): string {
-    return 'http://10.10.2.62:8000' + endpoint;
+    return 'http://13.233.161.214:81' + endpoint;
   }
 
   public getResponseData(response: { success: boolean, data: any, message: string }): any {
