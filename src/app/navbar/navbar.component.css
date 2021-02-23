@@ -1,3 +1,6 @@
 a{
     cursor: pointer;
 }
+svg{
+    vertical-align: baseline !important;
+}

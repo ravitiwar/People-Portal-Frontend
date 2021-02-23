@@ -30,7 +30,7 @@ export class RoomFormComponent implements OnInit, OnDestroy {
         this.roomService.addRoom(this.room);
     }
 
-    updateRoom(): void {
+        updateRoom(): void {
         this.roomService.updateRoom(this.room);
     }
 

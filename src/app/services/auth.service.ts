@@ -66,6 +66,8 @@ export class AuthService {
     return new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
+      .set('Access-Control-Allow-Headers', '*')
+      .set('Accept', 'application/json, text/plain')
       .set('Authorization', 'Bearer ' + this.getAccessToken());
   }
 
