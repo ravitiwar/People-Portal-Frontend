@@ -45,6 +45,7 @@ export class EmployeeService {
     }
 
     addEmployee(employee: Employee): void {
+      // tslint:disable-next-line:max-line-length
         this.http.post(this.dataService.getUrl('/api/employee'), employee, {headers: this.authService.getAuthHeaders()}).subscribe((res: any) => {
             if (this.dataService.isResponseSuccess(res)) {
                 const emp: Employee = new Employee(this.dataService.getResponseData(res));

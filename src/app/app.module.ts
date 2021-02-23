@@ -10,7 +10,6 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {ContainerComponent} from './container/container.component';
 import {EmployeeComponent} from './container/employee/employee.component';
 import {RoomComponent} from './container/room/room.component';
-import {EditComponent} from './container/employee/edit/edit.component';
 import {CreateComponent} from './container/employee/create/create.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,49 +23,48 @@ import {EmployeeCapabilityPipe} from './pipes/employee-capability.pipe';
 import {RoomCapabilityPipe} from './pipes/room-capability.pipe';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {EditRoleComponent} from './navbar/role/edit-role/edit-role.component';
-import {MatDividerModule} from "@angular/material/divider";
-import {MatIconModule} from "@angular/material/icon";
-import {MatTabsModule} from "@angular/material/tabs";
-import {MatCardModule} from "@angular/material/card";
-import { RoomFormComponent } from './container/room/room-form/room-form.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {RoomFormComponent} from './container/room/room-form/room-form.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        LoginComponent,
-        NavbarComponent,
-        ContainerComponent,
-        EmployeeComponent,
-        RoomComponent,
-        EditComponent,
-        CreateComponent,
-        RoleComponent,
-        EmployeeCapabilityPipe,
-        RoomCapabilityPipe,
-        EditRoleComponent,
-        RoomFormComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        NgbModule,
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatDialogModule,
-        MatTableModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        MatDividerModule,
-        MatIconModule,
-        MatTabsModule,
-        MatCardModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    NavbarComponent,
+    ContainerComponent,
+    EmployeeComponent,
+    RoomComponent,
+    CreateComponent,
+    RoleComponent,
+    EmployeeCapabilityPipe,
+    RoomCapabilityPipe,
+    EditRoleComponent,
+    RoomFormComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatTableModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatIconModule,
+    MatTabsModule,
+    MatCardModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

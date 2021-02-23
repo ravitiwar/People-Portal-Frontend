@@ -10,9 +10,9 @@
 
     <mat-card>
       <table mat-table [dataSource]="employees" class="w-100">
-        <ng-container matColumnDef="roomId">
-          <th mat-header-cell *matHeaderCellDef> Room ID</th>
-          <td mat-cell *matCellDef="let element"> {{element.roomId}} </td>
+        <ng-container matColumnDef="ID">
+          <th mat-header-cell *matHeaderCellDef> Employee Id</th>
+          <td mat-cell *matCellDef="let element"> {{element.empId}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
@@ -20,28 +20,35 @@
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="bookingEmail">
-          <th mat-header-cell *matHeaderCellDef> Booking Email</th>
-          <td mat-cell *matCellDef="let element"> {{element.bookingEmail}} </td>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>Position</th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container>
 
 
-        <ng-container matColumnDef="sitting">
-          <th mat-header-cell *matHeaderCellDef> Sitting</th>
-          <td mat-cell *matCellDef="let element"> {{element.sitting}} </td>
+        <ng-container matColumnDef="team">
+          <th mat-header-cell *matHeaderCellDef> Team</th>
+          <td mat-cell *matCellDef="let element"> {{element.team}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="currentStatus">
-          <th mat-header-cell *matHeaderCellDef> Current Status</th>
-          <td mat-cell *matCellDef="let element"> {{element.currentStatus}} </td>
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Phone</th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="actions">
+        <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef class="text-center"> Action</th>
           <td mat-cell *matCellDef="let element">
                     <span class="d-flex w-100  justify-content-around pd-2">
-                        <i *ngIf="authService.userCan('conf_room_edit')" style="cursor: pointer" (click)="editRoom(element)" class="fa fa-pencil text-warning"></i>
-                        <i *ngIf="authService.userCan('conf_room_delete')" style="cursor: pointer" (click)="deleteRoom(element)" class="fa fa-trash text-danger"></i>
+                        <i *ngIf="authService.userCan('employee_edit')" style="cursor: pointer"
+                           (click)="editEmployee(element)" class="fa fa-pencil text-warning"></i>
+                        <i *ngIf="authService.userCan('employee_delete')" style="cursor: pointer"
+                           (click)="deleteEmployee(employee)" class="fa fa-trash text-danger"></i>
                     </span>
           </td>
         </ng-container>
@@ -50,40 +57,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </mat-card>
-
-
-    <table class="table table-striped table-bordered table-responsive">
-      <thead>
-      <tr>
-        <th scope="col">Employee Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Position</th>
-        <th scope="col">Team</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let employee of employees">
-        <th scope="row">{{employee.empId}}</th>
-        <td>{{employee.name}}</td>
-        <td>{{employee.email}}</td>
-        <td>{{employee.position}}</td>
-        <td>{{employee.team}}</td>
-        <td>{{employee.phone}}</td>
-        <td>
-              <span class="d-flex w-100  justify-content-between pd-2">
-               <a *ngIf="authService.userCan('employee_edit')" href="#" (click)="editEmployee(employee)"> <i
-                 class="fa fa-pencil text-warning"></i></a>
-                <a *ngIf="authService.userCan('employee_delete')" href="#" (click)="deleteEmployee(employee)">  <i
-                  class="fa fa-trash text-danger"></i></a>
-              </span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
   </div>
 </div>
-<app-edit *ngIf="editMode" [employee]="employee"></app-edit>
-<app-employee-create *ngIf="createMode"></app-employee-create>

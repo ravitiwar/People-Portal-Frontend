@@ -12,6 +12,7 @@ import {catchError} from 'rxjs/operators';
 export class AuthService {
   public user: User | undefined;
   public userLogin: EventEmitter<any> = new EventEmitter();
+  public userLoginFailed: EventEmitter<any> = new EventEmitter();
   public userLogout: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient, private dataService: DataService) {
@@ -28,6 +29,7 @@ export class AuthService {
         localStorage.setItem('refresh_token', res.data.refresh_token as string);
         this.getUserDetails();
       } else {
+        this.userLoginFailed.emit('Login failed');
         alert('Invalid Credentials!');
       }
     });
@@ -72,7 +74,7 @@ export class AuthService {
   }
 
   public userCan(cap: string): boolean {
-    return (this.user?.capabilities.indexOf(cap) !== -1);
+    return ((this.user !== undefined) && (this.user.capabilities.indexOf(cap) !== -1));
   }
 
   public handelErrors(err: HttpErrorResponse): void {

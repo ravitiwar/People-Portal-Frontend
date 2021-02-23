@@ -13,10 +13,11 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  public isUserLoggedIn: boolean | undefined;
+  public isUserLoggedIn = false;
   public user: User | undefined;
   public logoutEvent: Subscription;
   public logInEvent: Subscription;
+  public displayRole = false;
 
   constructor(public authService: AuthService, protected roleService: RoleService, public dialog: MatDialog) {
     this.logInEvent = this.authService.userLogin.subscribe((user: User) => {

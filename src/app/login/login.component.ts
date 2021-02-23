@@ -4,30 +4,34 @@ import {AuthService} from '../services/auth.service';
 import {Subscription} from 'rxjs';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-    public isLoading = false;
-    public loginEvent: Subscription;
+  public isLoading = false;
+  public loginEvent: Subscription;
+  public loginFailedEvent: Subscription;
 
-    constructor(private authService: AuthService) {
-        this.loginEvent = this.authService.userLogin.subscribe((res) => {
-            this.isLoading = false;
-        });
-    }
+  constructor(private authService: AuthService) {
+    this.loginEvent = this.authService.userLogin.subscribe((res) => {
+      this.isLoading = false;
+    });
+    this.loginFailedEvent = this.authService.userLoginFailed.subscribe((res) => {
+      this.isLoading = false;
+    });
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+  }
 
-    public login(loginForm: NgForm): any {
-        this.isLoading = true;
-        this.authService.login(loginForm.value.email, loginForm.value.password);
-    }
+  public login(loginForm: NgForm): any {
+    this.isLoading = true;
+    this.authService.login(loginForm.value.email, loginForm.value.password);
+  }
 
-    ngOnDestroy(): void {
-        this.loginEvent.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.loginEvent.unsubscribe();
+  }
 
 }

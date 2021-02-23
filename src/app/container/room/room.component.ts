@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Room} from '../../models/room.model';
 import {RoomService} from '../../services/room.service';
 import {Subscription} from 'rxjs';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {RoomFormComponent} from './room-form/room-form.component';
 import {AuthService} from '../../services/auth.service';
 import {User} from '../../services/user.model';
@@ -57,7 +57,7 @@ export class RoomComponent implements OnInit, OnDestroy {
 
   private openDialog(room: Room): void {
     this.dialog.open(RoomFormComponent, {
-      data: room
+      data: {...room}
     });
   }
 

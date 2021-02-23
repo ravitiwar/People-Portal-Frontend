@@ -1,34 +1,33 @@
 <h2 mat-dialog-title>Room</h2>
-
 <mat-dialog-content class="mat-typography">
-    <form>
-        <div class="form-group">
-            <label>Room ID</label>
-            <input type="text" [(ngModel)]="room.roomId" name="roomId" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" [(ngModel)]="room.name" name="name" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Booking Email</label>
-            <input type="email" [(ngModel)]="room.bookingEmail" name="bookingEmail" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Sitting</label>
-            <input type="number" [(ngModel)]="room.sitting" name="sitting" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Current Status</label>
-            <select [(ngModel)]="room.currentStatus" name="currentStatus" class="form-control">
-                <option value="">Select State</option>
-                <option value="booked">Booked</option>
-                <option value="available">Available</option>
-            </select>
-        </div>
-    </form>
+  <form>
+    <div class="form-group">
+      <label>Room ID</label>
+      <input type="text" [(ngModel)]="room.roomId" name="roomId" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="room.name" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Booking Email</label>
+      <input type="email" [(ngModel)]="room.bookingEmail" name="bookingEmail" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Sitting</label>
+      <input type="number" [(ngModel)]="room.sitting" name="sitting" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Current Status</label>
+      <select [(ngModel)]="room.currentStatus" name="currentStatus" class="form-control">
+        <option value="">Select State</option>
+        <option value="booked">Booked</option>
+        <option value="available">Available</option>
+      </select>
+    </div>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button (click)="addRoom()">Save</button>
-    <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="editMode?updateRoom():addRoom()">Save</button>
+  <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
