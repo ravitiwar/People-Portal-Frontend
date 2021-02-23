@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: |
           npm install
-          npm build
+          npm run-script build
           mkdir dist
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
