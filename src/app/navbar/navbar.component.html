@@ -8,7 +8,7 @@
       <div class="col-md-2">
         <div class="pd-2 d-inline mr-2 d-flex align-items-center justify-content-end"
              *ngIf="(this.authService.userCan('employee_delete') || this.authService.userCan('employee_edit'))">
-          <button (click)="launchRoleModel()" mat-stroked-button color="primary">
+          <button *ngIf="isUserLoggedIn" (click)="launchRoleModel()" mat-stroked-button color="primary">
             <mat-icon aria-hidden="false" aria-label="Roles">
               <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24"
                    viewBox="0 0 24 24" width="24">
